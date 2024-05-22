@@ -1,0 +1,134 @@
+
+# vars: block is not required, but obviates the need for command line flags
+# direction: is a global setting and can be: down, up, right, left
+# near: is scoped to the context of the object and can be
+#  top-left, top-center, top-right, center-left, center-right, bottom-left, bottom-center, bottom-right,
+#  outside-top-left, outside-top-center, outside-top-right, outside-left-center, outside-right-center,
+#  outside-bottom-left, outside-bottom-center, outside-bottom-right
+# color: and stroke: can be a CSS color name or double-quoted hex "#000000"
+# fill: can be transparent or a CSS color name or double-quoted hex "x000000"
+# fill-pattern: can be none, lines, dots, or grain
+# label: text blocks may include '\n' for new lines
+# shape: may be rectangle, square, diamond, circle, oval, hexagon, paralellogram, cloud, person
+# connections between blocks can be -> -- <-  <->
+# markdown:
+#  headers- #, ##, ###
+#  bold- **word**
+#  italic- *word* OR _word_
+#  numbered list- '1.'
+#  bullet points- '-'
+#  code- `word`
+#  link- [title](url)
+#  blockquote- >
+
+vars: {
+  d2-config: {
+    pad: 50
+    center: true
+    sketch: false
+    layout-engine: elk
+  }
+}
+
+direction: down
+
+# define title, explanation, and footer elements
+
+title: |md
+### Diagram Title
+| {
+  near: top-center
+}
+
+explanation: |md
+  ### Explanation
+  First line of text\
+  Second line of text
+| {
+  near: center-left
+}
+
+footer: |md
+Footer
+| {
+  near: bottom-center
+}
+
+# define blocks and containers 
+container1: {
+  label: container 1 
+  label.near: top-left
+  shape: rectangle
+  #tooltip: container 1 tooltip text \n\nnewline text
+  #link: https://www.jsjhoge.com
+  style: {
+    stroke: black
+    stroke-width: 1
+    stroke-dash: 0
+    bold: false
+    italic: false
+    underline: false
+    font-size: 12
+    font-color: black
+    border-radius: 0
+    fill: transparent 
+    fill-pattern: none 
+  }
+
+block1: {
+  label: block 1 
+  #label.near: bottom-center
+  shape: rectangle
+  #tooltip: block1 tooltip text \n\nnewline text
+  #link: https://www.jsjhoge.com
+  style: {
+    stroke: black
+    stroke-width: 1
+    stroke-dash: 0
+    bold: false
+    italic: false
+    underline: false
+    #font-size: 12
+    font-color: black
+    border-radius: 0
+    fill: transparent 
+    fill-pattern: none 
+  }
+}
+
+block2: {
+  label: block 2
+  #label.near: top-center
+  shape: rectangle 
+  #tooltip: block2 tooltip text \n\nnewline text
+  #link: https://www.jsjhoge.com
+  style: {
+    stroke: black
+    stroke-width: 1
+    stroke-dash: 0
+    bold: false
+    italic: false
+    underline: false
+    #font-size: 12
+    font-color: black
+    border-radius: 0
+    fill: transparent
+    fill-pattern: none
+  }
+}
+}
+# define the connections between blocks and containers
+
+container1.block1 -> container1.block2: {
+  label: connection
+  style: {
+    stroke: black 
+    stroke-width: 1
+    stroke-dash: 0
+    bold: false
+    italic: false
+    underline: false
+    #font-size: 12
+    font-color: black
+  }
+}
